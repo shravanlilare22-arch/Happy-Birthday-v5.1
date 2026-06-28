@@ -118,23 +118,6 @@ document.onmousewheel = function(e) {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var canvas = document.getElementById("canvas");
 
 canvas.width = window.innerWidth;
@@ -415,3 +398,194 @@ function draw(){
 }
 
 draw();
+
+// ===== Typewriter =====
+
+const message =
+"May all your dreams come true ❤️";
+
+let i = 0;
+
+function typeWriter(){
+
+if(i < message.length){
+
+document.getElementById("typing").innerHTML += message.charAt(i);
+
+i++;
+
+setTimeout(typeWriter,80);
+
+}
+
+}
+
+setTimeout(typeWriter,2500);
+setInterval(()=>{
+
+const heart=document.createElement("div");
+
+heart.className="floating-heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.animationDuration=(4+Math.random()*3)+"s";
+
+heart.style.fontSize=(20+Math.random()*25)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},7000);
+
+},300);
+setInterval(()=>{
+
+const p=document.createElement("div");
+
+p.className="petal";
+
+p.innerHTML="🌹";
+
+p.style.left=Math.random()*100+"vw";
+
+p.style.animationDuration=(5+Math.random()*5)+"s";
+
+document.body.appendChild(p);
+
+setTimeout(()=>{
+p.remove();
+},10000);
+
+},800);
+
+// ===== Flying Balloons =====
+
+const balloons=["🎈","🎉","🎀"];
+
+setInterval(()=>{
+
+const b=document.createElement("div");
+
+b.className="balloon";
+
+b.innerHTML=balloons[Math.floor(Math.random()*balloons.length)];
+
+b.style.left=Math.random()*100+"vw";
+
+b.style.animationDuration=(8+Math.random()*4)+"s";
+
+b.style.fontSize=(30+Math.random()*30)+"px";
+
+document.body.appendChild(b);
+
+setTimeout(()=>{
+b.remove();
+},12000);
+
+},1500);
+
+// ===== Cursor Sparkle =====
+
+document.addEventListener("mousemove",function(e){
+
+const s=document.createElement("div");
+
+s.className="spark";
+
+s.style.left=e.clientX+"px";
+
+s.style.top=e.clientY+"px";
+
+document.body.appendChild(s);
+
+setTimeout(()=>{
+s.remove();
+},800);
+
+});
+
+// ===== Stars =====
+
+for(let i=0;i<80;i++){
+
+const star=document.createElement("div");
+
+star.className="star";
+
+star.innerHTML="✦";
+
+star.style.left=Math.random()*100+"vw";
+
+star.style.top=Math.random()*100+"vh";
+
+star.style.fontSize=(5+Math.random()*12)+"px";
+
+star.style.animationDelay=Math.random()*2+"s";
+
+document.body.appendChild(star);
+
+}
+
+document.addEventListener("mousemove",e=>{
+
+const t=document.createElement("div");
+
+t.className="trail";
+
+t.style.left=e.clientX+"px";
+
+t.style.top=e.clientY+"px";
+
+document.body.appendChild(t);
+
+setTimeout(()=>{
+
+t.remove();
+
+},700);
+
+});
+
+// ===== Heart Explosion =====
+
+document.querySelectorAll("#spin-container img").forEach(img=>{
+
+img.addEventListener("click",function(e){
+
+for(let i=0;i<15;i++){
+
+const h=document.createElement("div");
+
+h.className="burst";
+
+h.innerHTML="❤️";
+
+h.style.left=e.pageX+(Math.random()*80-40)+"px";
+
+h.style.top=e.pageY+(Math.random()*80-40)+"px";
+
+document.body.appendChild(h);
+
+setTimeout(()=>{
+
+h.remove();
+
+},1000);
+
+}
+
+confetti({
+
+particleCount:80,
+
+spread:100
+
+});
+
+});
+
+});
